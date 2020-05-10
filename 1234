@@ -1,0 +1,17 @@
+import requests
+
+from bs4 import BeautifulSoup
+
+response=requests.get("https://workey.codeit.kr/music/index")
+
+soup=BeautifulSoup(response.text,'html.parser')
+# print(soup)
+li_tags=soup.select(".popular__order .list .list__index.blue")
+
+popular_artists=[]
+
+for li in li_tags:
+    popular_artists.append(li.text.strip())
+
+
+print(popular_artists)
